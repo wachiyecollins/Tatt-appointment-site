@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends "login.html"%}
+{% block title %}Register | The plug Trading{% endblock %}
+{% block container %}
+    <form class="w-full p-3" style="height: auto;" method="post" action="{{ url_for('sign_up') }}">
+        <img style="width: 100px; display: block; margin: 0 auto; border-radius: 50%;" src="{{ url_for('static', filename='img/thee_plug_logo.jpg') }}" alt="">
+        <h1 class="text-gray-800 font-bold text-2xl mb-1 py-4">Welcome - Arts Experience</h1>
+        <p class="text-lg font-normal text-white-600 mb-7">Register</p>
+
+        {% for message in get_flashed_messages() %}
+            <div class="flash mb-3" style="text-align: center; color: crimson;">{{ message }}</div>
+        {% endfor %}
+
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+            <i class="fa-solid fa-at"></i>
+            <input class="pl-2 w-full outline-none border-none" type="email" name="email" placeholder="Email" required />
+        </div>
+
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+            <i class="fa-solid fa-circle-user"></i>
+            <input class="pl-2 w-full outline-none border-none" type="text" name="fname" maxlength="15" placeholder="First Name" required/>
+        </div>
+
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+            <i class="fa-solid fa-circle-user"></i>
+            <input class="pl-2 w-full outline-none border-none" type="text" name="lname" maxlength="15" placeholder="Last Name" required/>
+        </div>
+
+
+        <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
+            <i class="fa-solid fa-lock"></i>
+            <input class="pl-2 w-full outline-none border-none" type="password" name="password" id="password" placeholder="Password (alphanumeric)" maxlength="16" required/>
+            <div class="ml-2 cursor-pointer" id="visibility">
+                <i class="fa-regular fa-eye-slash ml-2" id="v_slash" style="display: block;"></i>
+                <i class="fa-regular fa-eye" id="v_plain" style="display: none;"></i>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-full mb-2">Register</button>
+        <span class="text-sm ml-2 cursor-pointer mb-4">Already have an account?  <a href="{{ url_for('sign_in') }}" style="text-decoration: none;">login</a></span>
+    </form>
+{% endblock %}

